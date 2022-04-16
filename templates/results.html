@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+  <meta charset="UTF-8">
+  <title>iNeuron Course Page</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+
+      <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+
+</head>
+
+<body>
+
+  <div class="table-users", style="overflow-x:auto;">
+   <div class="header">iNeuron Courses</div>
+
+   <table width="100%" cellspacing="0">
+      <tr>
+         <th width="500">Course Name</th>
+         <th width="800">Description</th>
+         <th>Price</th>
+         <th>Class Timing</th>
+         <th>Doubt-class Timings</th>
+         <th width="800">Course Overview</th>
+         <th width="800">Features</th>
+         <th>Instructors</th>
+         <th width="500">Requirements</th>
+         <th width="3000">Syllabus</th>
+      </tr>
+         {% for ineuron_data in ineuron_data %}
+      <tr>
+          <td>{{ineuron_data['Title']}}</td>
+         <td>{{ineuron_data['Course Description']}}</td>
+         <td>{{ineuron_data['Price']}}</td>
+         <td>{{ineuron_data['Class Timings']}}</td>
+         <td>{{ineuron_data['Doubt-class Timings']}} </td>
+          <td>{{ineuron_data['Course Overview']}}</td>
+         <td>{{ineuron_data['Features']}}</td>
+         <td>{{ineuron_data['Instructors']}}</td>
+          <td>{{ineuron_data['Requirements']}}</td>
+         <td>{{ineuron_data['Syllabus']}} </td>
+       {% endfor %}
+   </table>
+</div>
+
+
+
+</body>
+
+</html>

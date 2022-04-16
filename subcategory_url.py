@@ -11,19 +11,21 @@ class Subcat:
         self.log.INFO("Subcategory_url module initiated")
         self.sub_urls = sub_urls
         chrome_option = Options()
-        chrome_option.binary_location=os.environ.get("GOOGLE_CHROME_BIN")
+        #chrome_option.binary_location=os.environ.get("GOOGLE_CHROME_BIN")
         chrome_option.add_argument("--no-sandbox")
         chrome_option.add_argument("--headless")
         chrome_option.add_argument("--disable-dev-shm-usage")
-        self.driver_path = os.environ.get("CHROMEDRIVER_PATH")
-        #self.driver_path = "E:\Shivansh\iNeuron\Projects\iNeuron_course_Scrapper\chromedriver.exe"
+        #self.driver_path = os.environ.get("CHROMEDRIVER_PATH")
+        self.driver_path = "E:\Shivansh\iNeuron\Projects\iNeuron_course_Scrapper\chromedriver.exe"
         self.driver = webdriver.Chrome(executable_path=self.driver_path, options=chrome_option)
 
     def url_parser(self,url):
+        """Sets the page url for the driver to scrap"""
         self.driver.get(url)
         self.log.INFO(f'Parsing Page Title: {self.driver.title}')
 
     def courses_url(self):
+        """Returns the list of courses url after scrapping from each subcategory"""
         self.courses = []
         self.log.INFO(f'Extracting Course URLS from each Subcategory')
         try:

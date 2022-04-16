@@ -14,16 +14,17 @@ class Scrapper:
         self.Log.INFO("Scrapper module initiated")
         self.course_urls = course_urls
         chrome_option = Options()
-        chrome_option.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+        #chrome_option.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
         chrome_option.add_argument("--no-sandbox")
         chrome_option.add_argument("--headless")
         chrome_option.add_argument("--disable-dev-shm-usage")
-        self.driver_path = os.environ.get("CHROMEDRIVER_PATH")
-        #self.driver_path = "E:\Shivansh\iNeuron\Projects\iNeuron_course_Scrapper\chromedriver.exe"
+        #self.driver_path = os.environ.get("CHROMEDRIVER_PATH")
+        self.driver_path = "E:\Shivansh\iNeuron\Projects\iNeuron_course_Scrapper\chromedriver.exe"
         self.driver = webdriver.Chrome(executable_path=self.driver_path, options=chrome_option)
         self.actions = ActionChains(self.driver)
 
     def details_scrap(self):
+        """Returns the dictionary of all details scrapped from the course URL"""
         course_title = self.driver.find_elements(By.TAG_NAME, 'h3')[0].text
         course_desc = self.driver.find_elements(By.CLASS_NAME, 'Hero_course-desc__26_LL')[0].text
 
@@ -98,6 +99,7 @@ class Scrapper:
             for page in self.course_urls:
                 self.driver.get(page)
                 time.sleep(5)
+                # Closing the pop-up which appears on opening the page
                 pop_close = self.driver.find_elements(By.CLASS_NAME, "fas.fa-times")
                 self.actions.click(pop_close[0]).perform()
                 """pop_up = WebDriverWait(self.driver, 5).until(
@@ -107,6 +109,7 @@ class Scrapper:
                 """view_more = self.driver.find_elements(By.CLASS_NAME, "fas.fa-angle-down")
                 self.actions.click(view_more[0]).perform()"""
                 try:
+                    # Clicking on view more on curricullam to extract entire syllabus
                     view_more = WebDriverWait(self.driver, 5).until(
                         EC.presence_of_element_located((By.CLASS_NAME, 'fas.fa-angle-down')))
                     view_more.click()
@@ -116,6 +119,7 @@ class Scrapper:
                 except:
                     self.Log.ERROR(f"Error occured in view more for {page}")
 
+                # Calling scrapper function to scrap details of page
                 ineuron_course.append(self.details_scrap())
                 self.Log.INFO(f"successfully scrapped page {count}. {page}")
                 count+=1

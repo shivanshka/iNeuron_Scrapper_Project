@@ -3,7 +3,7 @@ import logging
 class Logger:
     def __init__(self):
         logging.basicConfig(filename="scrapper.log", level=logging.INFO,
-                            format="%(acstime)s \t%(message)s %(levelname)s")
+                            format="%(asctime)s \t%(message)s %(levelname)s")
     def INFO(self,msg):
         logging.info(msg)
 

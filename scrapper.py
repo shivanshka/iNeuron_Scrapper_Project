@@ -13,7 +13,7 @@ class Scrapper:
         self.Log = logger.Logger()
         self.Log.INFO("Scrapper module initiated")
         self.course_urls = course_urls
-        chrome_option = Options()
+        chrome_option = webdriver.ChromeOptions()
         chrome_option.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
         chrome_option.add_argument("--no-sandbox")
         chrome_option.add_argument("--headless")

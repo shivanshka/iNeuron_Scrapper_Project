@@ -12,13 +12,13 @@ class Navigate:
         self.log = logger.Logger()
         self.log.INFO("Initiating navigate module for collecting subcategories urls")
         chrome_option = Options()
-        #chrome_option.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+        chrome_option.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
         chrome_option.add_argument("--no-sandbox")
-        chrome_option.add_argument("--headless")
+        #chrome_option.add_argument("--headless")
         chrome_option.add_argument("--disable-dev-shm-usage")
         chrome_option.add_argument("start-maximized")
-        #self.driver_path = os.environ.get("CHROMEDRIVER_PATH")
-        self.driver_path = "E:\Shivansh\iNeuron\Projects\iNeuron_course_Scrapper\chromedriver.exe"
+        self.driver_path = os.environ.get("CHROMEDRIVER_PATH")
+        #self.driver_path = "E:\Shivansh\iNeuron\Projects\iNeuron_course_Scrapper\chromedriver.exe"
         self.driver = webdriver.Chrome(executable_path=self.driver_path, options=chrome_option)
         self.driver.maximize_window()
         self.driver.get(self.main_url)

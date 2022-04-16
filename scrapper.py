@@ -14,12 +14,12 @@ class Scrapper:
         self.Log.INFO("Scrapper module initiated")
         self.course_urls = course_urls
         chrome_option = Options()
-        #chrome_option.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+        chrome_option.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
         chrome_option.add_argument("--no-sandbox")
         chrome_option.add_argument("--headless")
         chrome_option.add_argument("--disable-dev-shm-usage")
-        #self.driver_path = os.environ.get("CHROMEDRIVER_PATH")
-        self.driver_path = "E:\Shivansh\iNeuron\Projects\iNeuron_course_Scrapper\chromedriver.exe"
+        self.driver_path = os.environ.get("CHROMEDRIVER_PATH")
+        #self.driver_path = "E:\Shivansh\iNeuron\Projects\iNeuron_course_Scrapper\chromedriver.exe"
         self.driver = webdriver.Chrome(executable_path=self.driver_path, options=chrome_option)
         self.actions = ActionChains(self.driver)
 
